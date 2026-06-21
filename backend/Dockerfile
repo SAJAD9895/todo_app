@@ -1,4 +1,4 @@
-FROM node:20-alpine AS base
+FROM node:22-alpine AS base
 WORKDIR /app
 
 # Dependencies layer
@@ -17,8 +17,6 @@ RUN addgroup --system --gid 1001 nodejs && \
 
 USER nodeuser
 
-EXPOSE 5000
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-  CMD wget -qO- http://localhost:5000/health || exit 1
+EXPOSE 10000
 
 CMD ["node", "server.js"]
